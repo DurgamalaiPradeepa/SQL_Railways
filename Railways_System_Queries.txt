@@ -1,0 +1,337 @@
+CREATE DATABASE Railways; 
+USE Railways; 
+SHOW TABLES;
+
+CREATE TABLE IF NOT EXISTS Customer (
+        `Customer_ID` INT,
+        `First_name` VARCHAR(12) CHARACTER SET utf8,
+        `Last_name` VARCHAR(11) CHARACTER SET utf8,
+        `Phone_number` VARCHAR(12) CHARACTER SET utf8,
+        `State` VARCHAR(14) CHARACTER SET utf8,
+        `Zip_code` INT,
+        `Street` VARCHAR(14) CHARACTER SET utf8,
+        `Number_of_tickets` INT,
+        `Account_type` INT
+);
+INSERT INTO Customer VALUES
+        (574,'Winslow','Heminsley','215-483-9152','Pennsylvania',19191,'Basil',2,0),
+        (904,'Chip','Pecht','352-803-1979','Florida',32627,'Corscot',3,0),
+        (959,'Robbin','St Clair','314-819-5803','Missouri',63110,'Blue Bill Park',1,0),
+        (992,'Halley','Paulou','816-951-9091','Missouri',64160,'Fair Oaks',3,1),
+        (786,'Melodee','Crowhurst','210-247-9843','Texas',78225,'Browning',2,0),
+        (403,'Annabel','Malyj','713-922-0270','Texas',77025,'Hoard',1,0),
+        (554,'Nikolia','Norquay','818-239-3289','California',92822,'Mifflin',3,0),
+        (817,'Standford','Mullaney','850-319-4704','Florida',32590,'Straubel',3,0),
+        (843,'Madelaine','Brownbill','240-221-0382','Maryland',21747,'Tomscot',1,1),
+        (166,'Derwin','Thumann','419-577-8377','Ohio',43699,'Village Green',1,0),
+        (366,'Sorcha','Shorto','330-938-0034','Ohio',44310,'Boyd',2,1),
+        (238,'Lew','Stanwix','513-440-8712','Ohio',45243,'Rowland',2,0),
+        (156,'Janice','O''Hone','505-155-7423','New Mexico',87592,'Portage',2,0),
+        (948,'Devan','Mollatt','919-963-4130','North Carolina',27626,'Anthes',3,1),
+        (493,'Hercules','Balaam','619-923-1015','California',92137,'Sycamore',2,0),
+        (978,'Letisha','Hardington','561-397-9792','Florida',33462,'Atwood',2,0),
+        (199,'Quintin','Ezzy','208-188-6765','Idaho',83732,'Southridge',2,0),
+        (294,'Massimiliano','Robyns','757-501-6180','Virginia',23520,'Farwell',3,0),
+        (974,'Erminia','Charette','407-746-5331','Florida',32819,'Green Ridge',1,0),
+        (536,'Jonis','Battison','858-660-7775','California',92145,'Twin Pines',1,0),
+        (490,'Dorris','Whoston','239-447-4073','Florida',33972,'Merry',2,0),
+        (416,'Jessamyn','Nottingham','512-959-4244','Texas',78710,'Bayside',2,0),
+        (516,'Schuyler','Staite','719-346-8724','Colorado',80920,'Derek',3,0),
+        (809,'Jeri','Everall','502-526-4823','Kentucky',40205,'Ridgeway',2,1),
+        (942,'Myrta','Iacovuzzi','706-309-5911','Georgia',31998,'Ludington',1,0),
+        (965,'Greggory','Hansford','301-521-2666','Maryland',20709,'Grayhawk',1,0),
+        (579,'Jesse','Jeffry','785-774-3776','Kansas',66606,'Dovetail',1,0),
+        (679,'Dorice','Skentelbery','304-706-6162','West Virginia',25331,'Kennedy',3,0),
+        (165,'Mignonne','De Fraine','304-307-6256','West Virginia',26505,'Melrose',4,1),
+        (796,'Cairistiona','Reyburn','917-121-1130','New York',11231,'Charing Cross',2,0),
+        (821,'Nils','Colledge','301-302-2835','Maryland',20910,'Thierer',2,1),
+        (576,'Ursa','Veracruysse','337-589-4355','Louisiana',70607,'Quincy',2,0),
+        (297,'Ramona','Fitzgerald','801-595-1039','Utah',84145,'Farragut',3,1),
+        (740,'Ketty','Bence','414-301-9506','Wisconsin',53220,'Sunbrook',2,0),
+        (559,'Lorenza','Ivankov','404-485-2756','Georgia',31132,'Myrtle',3,0),
+        (608,'Berton','Salmen','814-872-6287','Pennsylvania',16550,'Barby',3,1);
+
+CREATE TABLE IF NOT EXISTS Ticket (
+        `Ticket_Number` VARCHAR(5) CHARACTER SET utf8,
+        `Destination` VARCHAR(5) CHARACTER SET utf8,
+        `Route_ID` VARCHAR(4) CHARACTER SET utf8,
+        `Seat_Number` VARCHAR(4) CHARACTER SET utf8,
+        `Age` INT,
+        `Journey_Date` DATETIME,
+        `Booking_Date` DATETIME,
+        `Time_of_Journey` VARCHAR(5) CHARACTER SET utf8,
+        `Customer_ID` INT,
+        `Rider_ID` INT,
+        `Discount_code` VARCHAR(4) CHARACTER SET utf8
+);
+INSERT INTO Ticket VALUES
+        ('T_199','ST-5','R-4','S-58',55,'2022-03-07 00:00:00','2022-02-01 00:00:00','02:49',574,575,'DC_2'),
+        ('T_477','ST-5','R-4','S-59',23,'2022-03-07 00:00:00','2022-02-02 00:00:00','02:49',574,574,'DC_2'),
+        ('T_908','ST-1','R-2','S-56',21,'2022-07-31 00:00:00','2022-04-28 00:00:00','11:11',904,904,'DC_1'),
+        ('T_230','ST-1','R-2','S-55',54,'2022-07-31 00:00:00','2022-04-28 00:00:00','11:11',904,905,'DC_1'),
+        ('T_922','ST-1','R-2','S-54',34,'2022-07-31 00:00:00','2022-04-28 00:00:00','11:11',904,906,'DC_1'),
+        ('T_632','ST-11','R-6','S-18',44,'2022-03-10 00:00:00','2022-03-10 00:00:00','09:35',959,959,'DC_4'),
+        ('T_993','ST-5','R-4','S-13',52,'2022-04-09 00:00:00','2022-04-01 00:00:00','23:22',992,992,NULL),
+        ('T_520','ST-5','R-4','S-14',32,'2022-04-09 00:00:00','2022-04-01 00:00:00','23:22',992,993,NULL),
+        ('T_750','ST-5','R-4','S-15',41,'2022-04-09 00:00:00','2022-04-01 00:00:00','23:22',992,994,NULL),
+        ('T_715','ST-13','R-9','S-35',40,'2022-03-29 00:00:00','2022-03-21 00:00:00','09:12',786,786,'DC_2'),
+        ('T_848','ST-13','R-9','S-36',31,'2022-03-29 00:00:00','2022-03-21 00:00:00','09:12',786,787,'DC_2'),
+        ('T_422','ST-10','R-3','S-39',68,'2022-08-25 00:00:00','2022-08-25 00:00:00','18:40',403,405,'DC_4'),
+        ('T_772','ST-1','R-2','S-36',28,'2022-05-25 00:00:00','2022-04-13 00:00:00','08:42',554,554,'DC_2'),
+        ('T_179','ST-1','R-2','S-37',28,'2022-05-25 00:00:00','2022-04-13 00:00:00','08:42',554,555,'DC_2'),
+        ('T_496','ST-1','R-2','S-38',36,'2022-05-25 00:00:00','2022-04-13 00:00:00','08:42',554,556,'DC_2'),
+        ('T_304','ST-10','R-10','S-27',31,'2022-12-12 00:00:00','2022-12-12 00:00:00','10:08',817,817,'DC_4'),
+        ('T_178','ST-10','R-3','S-14',65,'2022-06-06 00:00:00','2022-04-05 00:00:00','06:07',843,843,NULL),
+        ('T_309','ST-17','R-8','S-21',43,'2022-09-06 00:00:00','2022-03-05 00:00:00','03:52',817,817,'DC_1'),
+        ('T_663','ST-17','R-8','S-22',19,'2022-09-06 00:00:00','2022-03-05 00:00:00','03:53',817,818,'DC_1'),
+        ('T_977','ST-10','R-3','S-50',54,'2022-02-20 00:00:00','2022-01-20 00:00:00','16:03',166,170,'DC_2'),
+        ('T_858','ST-17','R-8','S-44',66,'2022-09-02 00:00:00','2022-08-23 00:00:00','11:42',366,366,NULL),
+        ('T_433','ST-11','R-6','S-44',57,'2022-09-02 00:00:00','2022-08-23 00:00:00','11:42',366,367,NULL),
+        ('T_417','ST-10','R-10','S-34',60,'2022-04-12 00:00:00','2022-04-11 00:00:00','02:50',238,238,'DC_3'),
+        ('T_793','ST-10','R-10','S-33',64,'2022-04-12 00:00:00','2022-04-11 00:00:00','02:50',238,239,'DC_3'),
+        ('T_641','ST-2','R-1','S-34',57,'2022-07-09 00:00:00','2022-05-21 00:00:00','09:47',156,156,'DC_2'),
+        ('T_145','ST-2','R-1','S-35',18,'2022-07-09 00:00:00','2022-05-21 00:00:00','09:47',156,157,'DC_2'),
+        ('T_895','ST-9','R-5','S-29',25,'2022-03-30 00:00:00','2022-02-20 00:00:00','06:54',948,948,NULL),
+        ('T_450','ST-9','R-5','S-28',37,'2022-03-30 00:00:00','2022-02-20 00:00:00','06:54',948,949,NULL),
+        ('T_674','ST-9','R-5','S-27',45,'2022-03-30 00:00:00','2022-02-20 00:00:00','06:54',948,950,NULL),
+        ('T_253','ST-9','R-5','S-46',32,'2022-12-26 00:00:00','2022-12-13 00:00:00','21:24',493,493,'DC_2'),
+        ('T_601','ST-9','R-5','S-45',64,'2022-12-26 00:00:00','2022-12-13 00:00:00','21:24',493,494,'DC_2'),
+        ('T_558','ST-12','R-7','S-27',63,'2022-01-24 00:00:00','2021-10-20 00:00:00','02:15',978,978,'DC_1'),
+        ('T_482','ST-12','R-7','S-28',55,'2022-01-24 00:00:00','2021-10-20 00:00:00','02:15',978,977,'DC_1'),
+        ('T_369','ST-12','R-7','S-50',47,'2022-09-26 00:00:00','2022-09-26 00:00:00','05:59',199,200,'DC_4'),
+        ('T_261','ST-12','R-7','S-49',66,'2022-09-26 00:00:00','2022-09-26 00:00:00','05:59',199,199,'DC_4'),
+        ('T_141','ST-13','R-9','S-33',24,'2022-05-29 00:00:00','2022-03-13 00:00:00','18:07',294,294,'DC_2'),
+        ('T_894','ST-13','R-9','S-32',60,'2022-05-29 00:00:00','2022-03-13 00:00:00','18:07',294,295,'DC_2'),
+        ('T_758','ST-13','R-9','S-31',32,'2022-05-29 00:00:00','2022-03-13 00:00:00','18:07',294,296,'DC_2'),
+        ('T_115','ST-11','R-6','S-59',26,'2022-02-21 00:00:00','2022-02-13 00:00:00','03:11',974,974,'DC_2'),
+        ('T_950','ST-1','R-2','S-57',55,'2022-02-21 00:00:00','2022-02-13 00:00:00','12:53',536,536,'DC_2'),
+        ('T_968','ST-10','R-10','S-18',23,'2022-07-22 00:00:00','2022-07-01 00:00:00','22:32',490,490,'DC_2'),
+        ('T_117','ST-10','R-10','S-19',29,'2022-07-22 00:00:00','2022-07-01 00:00:00','22:32',490,491,'DC_2'),
+        ('T_994','ST-2','R-1','S-36',21,'2022-02-26 00:00:00','2021-10-29 00:00:00','22:16',416,416,'DC_1'),
+        ('T_837','ST-2','R-1','S-38',48,'2022-02-26 00:00:00','2021-10-29 00:00:00','22:16',416,415,'DC_1'),
+        ('T_543','ST-10','R-10','S-36',52,'2022-10-29 00:00:00','2022-10-02 00:00:00','11:59',516,516,'DC_2'),
+        ('T_861','ST-10','R-10','S-37',47,'2022-10-29 00:00:00','2022-10-02 00:00:00','11:59',516,517,'DC_2'),
+        ('T_230','ST-10','R-10','S-38',26,'2022-10-29 00:00:00','2022-10-02 00:00:00','11:59',516,518,'DC_1'),
+        ('T_925','ST-1','R-2','S-60',54,'2022-08-07 00:00:00','2022-05-20 00:00:00','05:05',809,809,NULL),
+        ('T_165','ST-1','R-2','S-60',52,'2022-08-07 00:00:00','2022-05-20 00:00:00','05:05',809,808,NULL),
+        ('T_973','ST-11','R-6','S-39',48,'2022-04-04 00:00:00','2022-03-04 00:00:00','18:49',942,942,'DC_2'),
+        ('T_852','ST-10','R-10','S-11',35,'2022-01-14 00:00:00','2022-01-14 00:00:00','17:41',965,965,'DC_4'),
+        ('T_776','ST-5','R-4','S-27',63,'2022-02-09 00:00:00','2022-01-25 00:00:00','10:09',579,580,'DC_2'),
+        ('T_443','ST-2','R-1','S-28',58,'2022-04-28 00:00:00','2022-03-02 00:00:00','08:35',679,678,'DC_2'),
+        ('T_355','ST-2','R-1','S-29',28,'2022-04-28 00:00:00','2022-03-02 00:00:00','08:35',679,679,'DC_2'),
+        ('T_882','ST-2','R-1','S-30',69,'2022-04-28 00:00:00','2022-03-02 00:00:00','08:35',679,680,'DC_2'),
+        ('T_757','ST-12','R-7','S-49',35,'2022-07-13 00:00:00','2022-04-10 00:00:00','11:22',165,164,NULL),
+        ('T_539','ST-12','R-7','S-41',69,'2022-08-23 00:00:00','2022-04-10 00:00:00','12:49',165,166,NULL),
+        ('T_973','ST-12','R-7','S-42',49,'2022-08-23 00:00:00','2022-04-10 00:00:00','12:49',165,167,'DC_2'),
+        ('T_681','ST-12','R-7','S-43',40,'2022-08-23 00:00:00','2022-04-10 00:00:00','12:49',165,168,NULL),
+        ('T_491','ST-1','R-2','S-35',53,'2022-08-16 00:00:00','2022-07-14 00:00:00','00:05',796,798,'DC_2'),
+        ('T_365','ST-1','R-2','S-33',31,'2022-08-16 00:00:00','2022-07-14 00:00:00','00:05',796,796,'DC_2'),
+        ('T_861','ST-11','R-6','S-56',23,'2022-09-06 00:00:00','2022-09-06 00:00:00','05:58',821,821,'DC_2'),
+        ('T_444','ST-11','R-6','S-57',64,'2022-09-06 00:00:00','2022-09-06 00:00:00','05:58',821,822,NULL),
+        ('T_892','ST-11','R-6','S-39',35,'2022-06-22 00:00:00','2022-03-22 00:00:00','07:35',576,576,'DC_1'),
+        ('T_537','ST-11','R-6','S-40',52,'2022-06-22 00:00:00','2022-03-22 00:00:00','07:35',576,577,'DC_1'),
+        ('T_190','ST-10','R-3','S-21',64,'2022-02-27 00:00:00','2022-01-05 00:00:00','05:42',297,297,NULL),
+        ('T_974','ST-10','R-3','S-23',24,'2022-02-27 00:00:00','2022-01-05 00:00:00','05:42',297,298,NULL),
+        ('T_555','ST-10','R-3','S-22',46,'2022-02-27 00:00:00','2022-01-05 00:00:00','05:42',297,299,NULL),
+        ('T_512','ST-12','R-7','S-32',57,'2022-02-25 00:00:00','2021-11-24 00:00:00','00:35',740,741,'DC_1'),
+        ('T_765','ST-12','R-7','S-31',46,'2022-02-25 00:00:00','2021-11-24 00:00:00','00:35',740,743,'DC_1'),
+        ('T_546','ST-2','R-1','S-50',59,'2022-11-03 00:00:00','2022-10-17 00:00:00','12:05',559,559,'DC_2'),
+        ('T_899','ST-2','R-1','S-51',22,'2022-11-03 00:00:00','2022-10-17 00:00:00','12:05',559,560,'DC_2'),
+        ('T_847','ST-2','R-1','S-52',23,'2022-11-03 00:00:00','2022-10-17 00:00:00','12:05',559,561,'DC_2'),
+        ('T_634','ST-11','R-6','S-44',69,'2022-11-05 00:00:00','2022-06-12 00:00:00','05:51',608,607,NULL),
+        ('T_361','ST-11','R-6','S-43',31,'2022-11-05 00:00:00','2022-06-12 00:00:00','05:51',608,609,NULL),
+        ('T_490','ST-11','R-6','S-45',29,'2022-11-05 00:00:00','2022-06-12 00:00:00','05:51',608,610,NULL);
+      
+      
+CREATE TABLE IF NOT EXISTS Route (
+        `Route_ID` VARCHAR(4) CHARACTER SET utf8,
+        `Route_Name` VARCHAR(24) CHARACTER SET utf8,
+        `Distance` INT,
+        `Station_ID` INT,
+        `Train_ID` VARCHAR(2) CHARACTER SET utf8
+);
+INSERT INTO Route VALUES
+        ('R-1','R_Alaska Range',250,102,'G'),
+        ('R-2','R_Saint Elias',330,101,'Y'),
+        ('R-3','R_Wrangell Mountains',160,103,'C'),
+        ('R-4','R_Sierra Nevada',270,105,'P'),
+        ('R-5','R_Sawatch Range',380,104,'Br'),
+        ('R-6','R_Sangre de Cristo Range',480,106,'L'),
+        ('R-7','R_San Juan Mountains',390,107,'W'),
+        ('R-8','R_Tenmile-Mosquito Range',440,110,'Si'),
+        ('R-9','R_Elk Mountains ',320,108,'T'),
+        ('R-10','R_Rocky Mountains',210,109,'Go');
+
+CREATE TABLE IF NOT EXISTS Station (
+        `Station_ID` INT,
+        `Start_station` VARCHAR(5) CHARACTER SET utf8,
+        `End_station` VARCHAR(5) CHARACTER SET utf8
+);
+INSERT INTO Station VALUES
+        (102,'ST-7','ST-2'),
+        (101,'ST-8','ST-1'),
+        (103,'ST-3','ST-10'),
+        (105,'ST-6','ST-5'),
+        (104,'ST-4','ST-9'),
+        (106,'ST-7','ST-11'),
+        (107,'ST-16','ST-12'),
+        (110,'ST-8','ST-17'),
+        (108,'ST-15','ST-13'),
+        (109,'ST-14','ST-10');
+        
+CREATE TABLE IF NOT EXISTS Train (
+        `Train_ID` VARCHAR(2) CHARACTER SET utf8,
+        `Train_Name` VARCHAR(8) CHARACTER SET utf8
+);
+INSERT INTO Train VALUES
+        ('G','Green '),
+        ('Y','Yellow'),
+        ('C','Copper'),
+        ('P','Purple'),
+        ('Br','Brown'),
+        ('L','Lilac'),
+        ('W','White'),
+        ('Si','Silver    '),
+        ('T','Tan'),
+        ('Go','Golden');
+
+CREATE TABLE IF NOT EXISTS Discount (
+        `Discount_code` VARCHAR(4) CHARACTER SET utf8,
+        `Discount_rate` NUMERIC(3, 2),
+        `Discount_description` VARCHAR(65) CHARACTER SET utf8
+);
+INSERT INTO Discount VALUES
+        ('DC_1',-0.4,'Discount applied for Customer booking >90 days of the travel date'),
+        ('DC_2',-0.25,'Discount applied for Customer booking >30 days of the travel date'),
+        ('DC_3',0.2,'Price Hike for Customer booking < 7 days of the travel date'),
+        ('DC_4',0.5,'Price hike for Customer booking on the travel date(=0days)');
+        
+
+CREATE TABLE IF NOT EXISTS cost_multiplier (
+    `Route_ID` VARCHAR(4) CHARACTER SET utf8,
+    `date_last_updated` DATETIME,
+    `Fuel_Cost_Multiplier` NUMERIC(2, 1)
+);
+INSERT INTO cost_multiplier VALUES
+    ('R-1','2022-03-01 00:00:00',1.3),
+    ('R-1','2022-06-01 00:00:00',1.6),
+    ('R-1','2021-09-01 00:00:00',0.9),
+    ('R-1','2022-11-01 00:00:00',1.1),
+    ('R-2','2022-02-01 00:00:00',1.2),
+    ('R-2','2022-11-01 00:00:00',0.9),
+    ('R-3','2022-01-01 00:00:00',1.2),
+    ('R-3','2022-06-01 00:00:00',1.5),
+    ('R-4','2022-02-01 00:00:00',1.1),
+    ('R-4','2022-06-01 00:00:00',1.4),
+    ('R-5','2021-03-01 00:00:00',1.2),
+    ('R-5','2021-07-01 00:00:00',1.5),
+    ('R-5','2022-11-02 00:00:00',1),
+    ('R-6','2022-02-01 00:00:00',1.2),
+    ('R-6','2022-03-01 00:00:00',1.5),
+    ('R-6','2022-12-01 00:00:00',1.2),
+    ('R-7','2021-09-01 00:00:00',0.7),
+    ('R-7','2022-01-01 00:00:00',1),
+    ('R-7','2022-06-01 00:00:00',1.3),
+    ('R-7','2022-11-01 00:00:00',0.8),
+    ('R-8','2022-03-01 00:00:00',1.2),
+    ('R-8','2022-06-01 00:00:00',1.4),
+    ('R-8','2022-11-01 00:00:00',1),
+    ('R-9','2020-03-01 00:00:00',1.4),
+    ('R-9','2022-06-01 00:00:00',1.7),
+    ('R-9','2022-12-01 00:00:00',0.9),
+    ('R-10','2022-01-01 00:00:00',0.9),
+    ('R-10','2022-06-01 00:00:00',1.4),
+    ('R-10','2022-11-01 00:00:00',0.8);
+
+Alter table cost_multiplier ADD PRIMARY KEY (route_id,date_last_updated);
+Describe cost_multiplier;
+
+Alter table cost_multiplier ADD PRIMARY KEY (route_id,date);
+Describe cost_multiplier;
+
+-- AGE DISTRIBUTION ACROSS ALL ROUTES
+
+-- Create a view table that will show the calculation of how many customer whose age is in the range 18 - 35
+Create view A1 as select route_ID, count(route_ID) as 'Age_18_-_35'
+from TICKET where age >= 18 and age <= 35 group by route_ID;
+
+-- Create a view table that will show the calculation of how many customer whose age is in the range 36 - 59
+Create view A2 as select route_ID, count(route_ID) as 'Age_36_-_59'
+from TICKET where age >= 36 and age <= 59 group by route_ID;
+
+-- Create a view table that will show the calculation of how many customer whose age is in the range above 60
+Create view A3 as select route_ID, count(route_ID) as 'Age_Above_60' 
+from TICKET where age >= 60 group by route_ID;
+
+-- Concatenate every range of age in one table view
+select * from A1 natural left join A2 natural left join A3 group by Route_ID;
+
+
+-- PRICE TREND ANALYSIS
+
+Create VIEW T1 as SELECT Ticket.Ticket_Number,Ticket.Route_ID,Ticket.Journey_Date,Ticket.Booking_Date,Ticket.Discount_code,
+route.Distance from ticket
+INNER JOIN route
+ON ticket.Route_ID = route.Route_ID;
+
+Create View T2 as select * from cost_multiplier
+where 
+route_id = (select route_id from ticket where ticket_number = 'T_663')
+and
+date_last_updated <= (select Booking_Date from ticket where ticket_number = 'T_663')
+order by date_last_updated DESC
+limit 1;
+ 
+Create View T3 as Select T1.Ticket_Number, T1.Booking_Date,T1.Distance,
+T1.Discount_code,T2.Date_Last_updated,T2.Route_ID, T2.Fuel_Cost_Multiplier from T1 
+Inner Join
+T2 on T2.Route_Id=T1.Route_ID
+where T1.Ticket_Number='T_663'
+
+Create View Final_Table as
+Select T3.Ticket_Number, T3.Booking_Date,T3.Distance,
+T3.Date_Last_updated,T3.Route_ID, T3.Fuel_Cost_Multiplier,Discount.Discount_code,Discount.Discount_rate from T3
+Inner Join Discount on
+Discount.Discount_code=T3.Discount_code
+
+Select Final_Table.Ticket_Number, Final_Table.Booking_Date,Final_Table.Distance,
+Final_Table.Discount_code,Final_Table.Date_Last_updated,Final_Table.Route_ID, Final_Table.Fuel_Cost_Multiplier,
+Final_Table.Discount_rate,(Final_Table.Fuel_Cost_Multiplier*Final_Table.Distance)+ 
+((Final_Table.Fuel_Cost_Multiplier * Final_Table.Distance)* Final_Table.Discount_rate)as "Ticket_Price"
+from Final_Table
+
+
+-- REVENUE COMPARISON
+
+create view Rev as
+(select (m.fuel_cost_multiplier*r.Distance) as 'REVENUE', Account_Type,ticket_number,t.discount_code,t.route_id from ticket t
+left join cost_multiplier m on m.Route_ID = t.Route_ID
+left join route r on r.Route_ID = t.Route_ID
+left join customer c on t.Customer_ID = c.Customer_ID
+where t.ticket_number = 'T_681'
+and
+date_last_updated <= (select booking_date from ticket where ticket_number = 'T_681')
+order by date_last_updated DESC
+limit 1)
+
+UNION
+
+(select ((m.fuel_cost_multiplier+d.Discount_rate)*r.Distance) as 'REVENUE', Account_type,ticket_number,t.discount_code,t.route_id from ticket t 
+left join discount d on d.Discount_code = t.Discount_code
+left join cost_multiplier m on m.Route_ID = t.Route_ID
+left join route r on r.Route_ID = t.Route_ID
+left join customer c on t.Customer_ID = c.Customer_ID
+where t.ticket_number = 'T_765'
+and
+date_last_updated <= (select booking_date from ticket where ticket_number = 'T_765')
+order by date_last_updated DESC
+limit 1)
+
+select * from rev natural left join discount;
+
+
+-- VARIANCE IN THE FUEL COST MULTIPLIER
+
+select route_id, min(Fuel_Cost_Multiplier), Max(Fuel_Cost_Multiplier), 
+Max(Fuel_Cost_Multiplier) - min(Fuel_Cost_Multiplier)
+as Multiplier_Variance from cost_multiplier group by route_id
